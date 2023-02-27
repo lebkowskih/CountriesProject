@@ -3,14 +3,13 @@ import { StyleSheet, Text, View, Button, ScrollView } from 'react-native';
 import Header from './components/Header';
 import CountryCard from './components/CountryCard';
 import { useEffect, useState } from 'react';
+import fetchAllCountires from './services/FetchCountries';
 
 export default function App() {
 const [countries, setCountries] = useState([]);
 
 useEffect(() => {
-  fetch('https://restcountries.com/v3.1/all')
-    .then((response) => response.json())
-    .then((data) => setCountries(data))
+  fetchAllCountires(setCountries);
 }, []);
 
   return (
