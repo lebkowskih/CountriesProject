@@ -1,16 +1,20 @@
+import { useState } from "react";
 import { View, Text, StyleSheet, TextInput } from "react-native";
 
-const Header = () => {
-    return (
-      <View style={styles.headerBackground}>
-        <Text 
-          style={styles.headerText}>Odnajdź swój kraj</Text>
-        <TextInput 
-          style={styles.textInput}
-          placeholder="Szukaj kraju..."/>
-      </View>
-    );
-}
+const Header = ({ handleInputChange }) => {
+  return (
+    <View style={styles.headerBackground}>
+      <Text style={styles.headerText}>Odnajdź swój kraj</Text>
+      <TextInput
+        style={styles.textInput}
+        placeholder="Szukaj kraju..."
+        onChangeText={(value) => {
+          handleInputChange(value);
+        }}
+      />
+    </View>
+  );
+};
 
 export default Header;
 

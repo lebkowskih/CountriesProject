@@ -10,7 +10,7 @@ class FetchCountires {
   };
 
   findCountry (countryName, setCountries) {
-  fetch(BASE_URL + countryName)
+  fetch(BASE_URL + 'name/'+ countryName)
     .then((response) => response.json())
     .then((data) => {
       setCountries(data)

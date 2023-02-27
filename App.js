@@ -6,15 +6,23 @@ import { useEffect, useState } from 'react';
 import FetchCountires from './services/FetchCountries';
 
 export default function App() {
-const [countries, setCountries] = useState([]);
+  const [countries, setCountries] = useState([]);
+  const [inputValue, setInputValue] = useState('');
 
-useEffect(() => {
-  FetchCountires.fetchAllCountires(setCountries);
-}, []);
+  const handleInputChange = (value) => {
+    setInputValue(value);
+    if (value != '') {
+      FetchCountires.findCountry(value, setCountries);
+    }
+  };
+
+  useEffect(() => {
+    FetchCountires.fetchAllCountires(setCountries);
+  }, []);
 
   return (
     <ScrollView>
-      <Header></Header>
+      <Header handleInputChange={handleInputChange}></Header>
       {countries.map((country, index) => (
         <CountryCard
           key={index}
