@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
   },
   textInput: {
     borderWidth: 1,
+    borderColor: 'grey', 
     marginBottom:50,
     maxWidth:250,
   },
