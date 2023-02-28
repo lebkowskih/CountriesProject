@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { View, Text, StyleSheet, TextInput } from "react-native";
+import SelectDropdown from "react-native-select-dropdown";
 
-const Header = ({ handleInputChange }) => {
+const regions = ['Africa', 'America', 'Asia', 'Europe', 'Oceania'];
+const Header = ({ handleInputChange, handleRegionSelect }) => {
   return (
     <View style={styles.headerBackground}>
       <Text style={styles.headerText}>Odnajdź swój kraj</Text>
@@ -12,6 +14,19 @@ const Header = ({ handleInputChange }) => {
           handleInputChange(value);
         }}
       />
+      <SelectDropdown
+        data={regions}
+        buttonStyle={styles.selector}
+        onSelect={(value, index) => {
+          handleRegionSelect(value)
+        }}
+        buttonTextAfterSelection={(value, index) => {
+          return value;
+        }}
+        rowTextForSelection={(item, index) => {
+          return item;
+        }}
+        />
     </View>
   );
 };
@@ -38,4 +53,8 @@ const styles = StyleSheet.create({
     marginBottom:50,
     maxWidth:250,
   },
+  selector: {
+    bottom:40,
+    width:150,
+  }
 });

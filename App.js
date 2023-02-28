@@ -8,6 +8,7 @@ import FetchCountires from './services/FetchCountries';
 export default function App() {
   const [countries, setCountries] = useState([]);
   const [inputValue, setInputValue] = useState('');
+  const [region, setRegion] = useState('');
 
   const handleInputChange = (value) => {
     setInputValue(value);
@@ -16,13 +17,18 @@ export default function App() {
     }
   };
 
+  const handleRegionSelect = (value) => {
+    setRegion(value);
+    FetchCountires.selectRegion(value, setCountries);
+  }
+
   useEffect(() => {
     FetchCountires.fetchAllCountires(setCountries);
   }, []);
 
   return (
     <ScrollView>
-      <Header handleInputChange={handleInputChange}></Header>
+      <Header handleInputChange={handleInputChange} handleRegionSelect={handleRegionSelect}></Header>
       {countries.map((country, index) => (
         <CountryCard
           key={index}

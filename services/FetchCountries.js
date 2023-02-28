@@ -16,6 +16,14 @@ class FetchCountires {
       setCountries(data)
     });
   };
+
+  selectRegion(value, setCountries) {
+    fetch(BASE_URL + 'region/' + value)
+      .then((response) => response.json())
+      .then((data) => {
+        setCountries(data)
+      });
+  }
 }
 
 export default new FetchCountires();
