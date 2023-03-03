@@ -7,9 +7,9 @@ const CountryCard = props => {
         <Card>
           <Card.Image source={{ uri: props.flag }} />
           <Card.Title>{props.name}</Card.Title>
-          <Text>Liczba mieszkańców: {props.population} </Text>
-          <Text>Kontynent: {props.region} </Text>
-          <Text>Stolica: {props.capital}</Text>
+          <Text>Population: {props.population} </Text>
+          <Text>Region: {props.region} </Text>
+          <Text>Capital: {props.capital}</Text>
         </Card>
       </View>
     );

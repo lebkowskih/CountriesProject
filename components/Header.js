@@ -6,10 +6,10 @@ const regions = ['Africa', 'America', 'Asia', 'Europe', 'Oceania'];
 const Header = ({ handleInputChange, handleRegionSelect }) => {
   return (
     <View style={styles.headerBackground}>
-      <Text style={styles.headerText}>Odnajdź swój kraj</Text>
+      <Text style={styles.headerText}>Find your country!</Text>
       <TextInput
         style={styles.textInput}
-        placeholder="Szukaj kraju..."
+        placeholder="Search for your country..."
         onChangeText={(value) => {
           handleInputChange(value);
         }}
