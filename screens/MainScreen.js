@@ -36,6 +36,9 @@ export default function MainScreen ({navigation}) {
               region={country.region}
               capital={country.capital}
               flag={country.flags.png}
+              tld={country.tld}
+              currencies={country.currencies}
+              languages={country.languages}
             />
           </TouchableOpacity>
           ))}
