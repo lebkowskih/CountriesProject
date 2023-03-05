@@ -5,12 +5,10 @@ export default function DetailsScreen({navigation, route }) {
     
     return (
         <ScrollView>
-            
             <Button
-                style={styles.Button1}
                 title="Back"
                 onPress={() => navigation.navigate("Main")}
-                buttonStyle={{ backgroundColor: 'gray' }}
+                buttonStyle={styles.Button1}
                 icon={
                     <Icon
                       name='arrow-left'
@@ -55,14 +53,14 @@ const styles = StyleSheet.create({
     image: {
         width:350,
         height:220,
-        marginLeft: "3.5%",
-        marginRight: "auto",
+        marginLeft: "5%",
+        marginRight: "5%",
         marginTop: "10%",
     },
 
     headStyle: {
         color: 'black',
-        fontSize: '25px',
+        fontSize: 25,
         fontWeight: 'bold',
         marginLeft: "10%",
         marginRight: "auto",
@@ -71,7 +69,7 @@ const styles = StyleSheet.create({
 
     textStyle: {
         color: 'black',
-        fontSize: '15px',
+        fontSize: 15,
         fontWeight: 'bold',
         marginLeft: "10%",
         marginRight: "auto",
@@ -80,13 +78,14 @@ const styles = StyleSheet.create({
 
     textStyle2: {
         color: 'black',
-        fontSize: '15px',
+        fontSize: 15,
         marginLeft: "10%",
         marginRight: "auto",
         marginTop: "5%",
     },
 
     Button1: {
+        backgroundColor: 'gray',
         width:100,
         height:40,
         marginLeft: "5%",
@@ -98,5 +97,4 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.8,
         shadowRadius: 4,
     },
-   
 })

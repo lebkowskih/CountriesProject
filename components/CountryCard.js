@@ -24,7 +24,7 @@ export default CountryCard;
 const styles = StyleSheet.create({
   headStyle: {
     color: 'black',
-    fontSize: '20px',
+    fontSize: 20,
     fontWeight: 'bold',
     marginLeft: "auto",
     marginRight: "auto",
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
 
   textStyle: {
       color: 'black',
-      fontSize: '15px',
+      fontSize: 15,
       fontWeight: 'bold',
       marginLeft: "auto",
       marginRight: "auto",
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
 
   textStyle2: {
       color: 'black',
-      fontSize: '15px',
+      fontSize: 15,
       marginLeft: "auto",
       marginRight: "auto",
   },
