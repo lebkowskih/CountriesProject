@@ -41,6 +41,7 @@ export default function MainScreen ({navigation}) {
               currencies={country.currencies}
               languages={country.languages}
               borders={country.borders}
+              cca3={country.cca3}
             />
           </TouchableOpacity>
           ))}

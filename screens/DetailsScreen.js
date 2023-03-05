@@ -1,7 +1,15 @@
 import { ScrollView, StyleSheet } from 'react-native';
 import { Button, Image, Text, Icon } from 'react-native-elements';
+import FetchCountires from '../services/FetchCountries';
+import { useEffect, useState } from 'react';
+import { View } from 'react-native';
 
 export default function DetailsScreen({navigation, route }) {
+     const [countries, setCountries] = useState([]);
+
+     useEffect(() => {
+        FetchCountires.fetchAllCountires(setCountries);
+      }, []);
     
     return (
         <ScrollView>
@@ -27,6 +35,7 @@ export default function DetailsScreen({navigation, route }) {
             <Text style={styles.textStyle2}> <Text style={styles.textStyle}>Region:</Text> {route.params.country.region}</Text>
             <Text style={styles.textStyle2}> <Text style={styles.textStyle}>Sub Region:</Text> {route.params.country.subregion}</Text>
             <Text style={styles.textStyle2}> <Text style={styles.textStyle}>Capital:</Text> {route.params.country.capital}</Text>
+            {/* <Text style={styles.textStyle2}> <Text style={styles.textStyle}>CCA3:</Text> {route.params.country.cca3}</Text> */}
             <Text></Text>
             <Text></Text>
             <Text style={styles.textStyle2}> <Text style={styles.textStyle}>Top Level Domain:</Text> {Object.values(route.params.country.tld).join(", ")}</Text>
@@ -38,13 +47,48 @@ export default function DetailsScreen({navigation, route }) {
             </Text>
             <Text style={styles.textStyle2}> <Text style={styles.textStyle}>Languages:</Text> {Object.values(route.params.country.languages).join(", ")}</Text>
             {/* <Text style={styles.textStyle2}> <Text style={styles.textStyle}>Borders:</Text> {(route.params.country.borders)} </Text> */}
-            <Text style={styles.textStyle2}> 
+            {/* <Text style={styles.textStyle2}> 
                 <Text style={styles.textStyle}>Neighbors: </Text> 
                 {route.params.country.borders != null ?
                 <Text>{(route.params.country.borders).join(", ")}</Text>
                      : <Text>None</Text>
                 }
-            </Text>
+            </Text> */}
+          
+            {route.params.country.borders != null ? (
+            <>
+            <Text style={styles.textStyle}>Borders Countries:</Text>
+            <View style={styles.buttonContainer}>
+                <Button
+                title={route.params.country.borders[0]}
+                onPress={() =>
+                    navigation.navigate("Details", {country: countries.find(country => country.cca3 === route.params.country.borders[0])})}
+                buttonStyle={styles.Button2}  
+                disabled={!route.params.country.borders[0]}
+                disabledStyle={styles.disabledButton}
+                />
+                <Button
+                title={route.params.country.borders[1]}
+                onPress={() =>
+                    navigation.navigate("Details", {country: countries.find(country => country.cca3 === route.params.country.borders[1])})}
+                buttonStyle={styles.Button2} 
+                disabled={!route.params.country.borders[1]}
+                disabledStyle={styles.disabledButton} 
+                />
+                <Button
+                title={route.params.country.borders[2]}
+                onPress={() =>
+                    navigation.navigate("Details", {country: countries.find(country => country.cca3 === route.params.country.borders[2])})}
+                buttonStyle={styles.Button2}
+                disabled={!route.params.country.borders[2]}
+                disabledStyle={styles.disabledButton}   
+                />
+            </View>
+            </>
+            ) : (
+                <Text></Text>
+            )}
+                        
         </ScrollView>
     );
 }
@@ -97,4 +141,44 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.8,
         shadowRadius: 4,
     },
+   
+    Button2: {
+        backgroundColor: 'gray',
+        width:100,
+        height:40,
+        marginLeft: "5%",
+        marginRight: "auto",
+        marginTop: "1%",
+        borderRadius: 10,
+        shadowColor: 'black',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.8,
+        shadowRadius: 4,
+    },
+    
+    buttonContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        marginHorizontal: 10,
+        marginVertical: 20
+      },
+      
+      button: {
+        backgroundColor: 'gray',
+        width: 100,
+        height: 40,
+        borderRadius: 10,
+        shadowColor: 'black',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
+        elevation: 5,
+        margin: 10
+      },
+      
+      disabledButton: {
+        backgroundColor: 'gray',
+        opacity: 0.5
+      }
 })
