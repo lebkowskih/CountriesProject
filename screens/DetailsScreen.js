@@ -1,7 +1,8 @@
 import { ScrollView, StyleSheet } from 'react-native';
 import { Button, Image, Text, Icon } from 'react-native-elements';
 
-export default function DetailsScreen({navigation, route}) {
+export default function DetailsScreen({navigation, route }) {
+    
     return (
         <ScrollView>
             
@@ -38,6 +39,14 @@ export default function DetailsScreen({navigation, route}) {
                 return ` ${currency.name}`;})}
             </Text>
             <Text style={styles.textStyle2}> <Text style={styles.textStyle}>Languages:</Text> {Object.values(route.params.country.languages).join(", ")}</Text>
+            {/* <Text style={styles.textStyle2}> <Text style={styles.textStyle}>Borders:</Text> {(route.params.country.borders)} </Text> */}
+            <Text style={styles.textStyle2}> 
+                <Text style={styles.textStyle}>Neighbors: </Text> 
+                {route.params.country.borders != null ?
+                <Text>{(route.params.country.borders).join(", ")}</Text>
+                     : <Text>None</Text>
+                }
+            </Text>
         </ScrollView>
     );
 }
