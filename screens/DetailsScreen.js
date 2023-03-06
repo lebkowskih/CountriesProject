@@ -59,30 +59,14 @@ export default function DetailsScreen({navigation, route }) {
             <>
             <Text style={styles.textStyle}>Borders Countries:</Text>
             <View style={styles.buttonContainer}>
-                <Button
-                title={route.params.country.borders[0]}
-                onPress={() =>
-                    navigation.navigate("Details", {country: countries.find(country => country.cca3 === route.params.country.borders[0])})}
-                buttonStyle={styles.Button2}  
-                disabled={!route.params.country.borders[0]}
-                disabledStyle={styles.disabledButton}
-                />
-                <Button
-                title={route.params.country.borders[1]}
-                onPress={() =>
-                    navigation.navigate("Details", {country: countries.find(country => country.cca3 === route.params.country.borders[1])})}
-                buttonStyle={styles.Button2} 
-                disabled={!route.params.country.borders[1]}
-                disabledStyle={styles.disabledButton} 
-                />
-                <Button
-                title={route.params.country.borders[2]}
-                onPress={() =>
-                    navigation.navigate("Details", {country: countries.find(country => country.cca3 === route.params.country.borders[2])})}
-                buttonStyle={styles.Button2}
-                disabled={!route.params.country.borders[2]}
-                disabledStyle={styles.disabledButton}   
-                />
+                {route.params.country.borders.slice(0, 3).map(border =>
+                    <Button
+                        title={border}
+                        key={border}
+                        onPress={() => 
+                            navigation.navigate("Details", {country: countries.find(country => country.cca3 === border)})}
+                            buttonStyle={styles.Button2}
+                        />)}
             </View>
             </>
             ) : (
@@ -176,9 +160,4 @@ const styles = StyleSheet.create({
         elevation: 5,
         margin: 10
       },
-      
-      disabledButton: {
-        backgroundColor: 'gray',
-        opacity: 0.5
-      }
 })
