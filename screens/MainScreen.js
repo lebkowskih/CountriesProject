@@ -13,13 +13,13 @@ export default function MainScreen ({navigation}) {
   const handleInputChange = (value) => {
     setInputValue(value);
     if (value != '') {
-      FetchCountires.findCountry(value, setCountries);
+      FetchCountires.findCountry(value, setCountries, setIsLoading);
     }
   };
 
   const handleRegionSelect = (value) => {
     setRegion(value);
-    FetchCountires.selectRegion(value, setCountries);
+    FetchCountires.selectRegion(value, setCountries, setIsLoading);
   }
 
   useEffect(() => {

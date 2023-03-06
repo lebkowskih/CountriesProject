@@ -13,21 +13,28 @@ class FetchCountires {
       });
   };
 
-  findCountry (countryName, setCountries) {
-  fetch(BASE_URL + 'name/'+ countryName)
-    .then((response) => response.json())
-    .then((data) => {
-      setCountries(data)
-    });
+  findCountry (countryName, setCountries, setIsLoading) {
+    setIsLoading(true);
+    fetch(BASE_URL + 'name/'+ countryName)
+      .then((response) => response.json())
+      .then((data) => {
+        setCountries(data)
+      })
+      .finally(() => {
+          setIsLoading(false);
+        });
   };
 
-  selectRegion(value, setCountries) {
+  selectRegion(value, setCountries, setIsLoading) {
+    setIsLoading(true);
     fetch(BASE_URL + 'region/' + value)
       .then((response) => response.json())
       .then((data) => {
         setCountries(data)
+      }).finally(() => {
+        setIsLoading(false);
       });
-  }
+  };
 }
 
 export default new FetchCountires();
