@@ -4,11 +4,14 @@ import FetchCountires from '../services/FetchCountries';
 import { useEffect, useState } from 'react';
 import { View } from 'react-native';
 
+
 export default function DetailsScreen({navigation, route }) {
-     const [countries, setCountries] = useState([]);
+    const [countries, setCountries] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+
 
      useEffect(() => {
-        FetchCountires.fetchAllCountires(setCountries);
+        FetchCountires.fetchAllCountires(setCountries, setIsLoading);
       }, []);
     
     return (

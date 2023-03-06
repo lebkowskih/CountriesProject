@@ -1,11 +1,15 @@
 const BASE_URL = "https://restcountries.com/v3.1/"
 
 class FetchCountires {
-  fetchAllCountires(setCountries) {
+  fetchAllCountires(setCountries, setIsLoading) {
+    setIsLoading(true);
     fetch(BASE_URL + "all")
       .then((response) => response.json())
       .then((data) => {
         setCountries(data);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   };
 

@@ -1,4 +1,4 @@
-import { ScrollView, TouchableOpacity} from 'react-native';
+import { ActivityIndicator, ScrollView, TouchableOpacity, StyleSheet, View} from 'react-native';
 import CountryCard from '../components/CountryCard';
 import { useEffect, useState } from 'react';
 import FetchCountires from '../services/FetchCountries';
@@ -8,6 +8,7 @@ export default function MainScreen ({navigation}) {
   const [countries, setCountries] = useState([]);
   const [inputValue, setInputValue] = useState('');
   const [region, setRegion] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleInputChange = (value) => {
     setInputValue(value);
@@ -22,13 +23,15 @@ export default function MainScreen ({navigation}) {
   }
 
   useEffect(() => {
-    FetchCountires.fetchAllCountires(setCountries);
+    FetchCountires.fetchAllCountires(setCountries, setIsLoading);
   }, []);
 
   return (
     <ScrollView>
         <Header handleInputChange={handleInputChange} handleRegionSelect={handleRegionSelect}></Header>
-        {countries.map((country, index) => (
+        {isLoading ? (
+          <ActivityIndicator size="large" color="#0000ff"/>
+          ) : countries.map((country, index) => (
           <TouchableOpacity onPress={() =>
             navigation.navigate("Details", {country: country})} key={index}>
             <CountryCard
